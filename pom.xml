@@ -162,6 +162,7 @@
 			<properties>
 				<!-- src/main/resources/test-sdk-sdk.properties -->
 				<test-sdk.genericUrlPre>http://v.juhe.cn</test-sdk.genericUrlPre>
+				<test-sdk.key>dca2ab6a470aadd432943755f1</test-sdk.key>
 				<envName>local</envName>
 			</properties>
 		</profile>

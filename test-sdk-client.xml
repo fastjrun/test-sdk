@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bundle>
 	<packets>
-		<packet class="packet.api.QueryAddressByPostcodeResponseBody"
-			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
-			<field name="error_code" dataType="Integer" length="10"
-				canBeNull="false" remark="返回码" />
-			<field name="reason" dataType="String" length="100"
-				canBeNull="false" remark="返回说明" />
+		<packet class="packet.postcode.QueryAddressByPostcodeResponseBody"
+			parent="com.alibaba.testsdk.packet.BasePostcodeResponseBody">
 			<object name="result"
-				class="packet.api.QueryAddressByPostcodeResponseBodyResult">
+				class="packet.postcode.QueryAddressByPostcodeResponseBodyResult">
 				<list name="list"
-					class="packet.api.QueryAddressByPostcodeResponseBodyResultList">
+					class="packet.postcode.QueryAddressByPostcodeResponseBodyResultList">
 					<field name="PostNumber" dataType="String" length="6"
 						canBeNull="false" remark="邮编" />
 					<field name="Province" dataType="String" length="64"
@@ -24,26 +20,22 @@
 				</list>
 			</object>
 		</packet>
-		<packet class="packet.api.QueryPcdResponseBody"
-			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
-			<field name="error_code" dataType="Integer" length="10"
-				canBeNull="false" remark="返回码" />
-			<field name="reason" dataType="String" length="100"
-				canBeNull="false" remark="返回说明" />
+		<packet class="packet.postcode.QueryPcdResponseBody"
+			parent="com.alibaba.testsdk.packet.BasePostcodeResponseBody">
 			<list name="result"
-				class="packet.api.QueryPcdResponseBodyResult">
+				class="packet.postcode.QueryPcdResponseBodyResult">
 				<field name="id" dataType="String" length="10"
 					canBeNull="false" remark="省份ID" />
 				<field name="province" dataType="String" length="64"
 					canBeNull="false" remark="省份" />
 				<list name="city"
-					class="packet.api.QueryPcdResponseBodyResultCity">
+					class="packet.postcode.QueryPcdResponseBodyResultCity">
 					<field name="id" dataType="String" length="10"
 						canBeNull="false" remark="城市ID" />
 					<field name="city" dataType="String" length="64"
 						canBeNull="false" remark="城市" />
 					<list name="district"
-						class="packet.api.QueryPcdResponseBodyResultCityDistrict">
+						class="packet.postcode.QueryPcdResponseBodyResultCityDistrict">
 						<field name="id" dataType="String" length="10"
 							canBeNull="false" remark="区域ID" />
 						<field name="district" dataType="String" length="64"
@@ -52,43 +44,18 @@
 				</list>
 			</list>
 		</packet>
-		<packet class="packet.api.QueryPostcodeByAddressResponseBody"
-			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
-			<field name="error_code" dataType="Integer" length="10"
-				canBeNull="false" remark="返回码" />
-			<field name="reason" dataType="String" length="100"
-				canBeNull="false" remark="返回说明" />
-			<object name="result"
-				class="packet.api.QueryPostcodeByAddressResponseBodyResult">
-				<list name="list"
-					class="packet.api.QueryPostcodeByAddressResponseBodyResultList">
-					<field name="PostNumber" dataType="String" length="6"
-						canBeNull="false" remark="邮编" />
-					<field name="Province" dataType="String" length="64"
-						canBeNull="false" remark="省份" />
-					<field name="City" dataType="String" length="64"
-						canBeNull="false" remark="城市" />
-					<field name="District" dataType="String" length="64"
-						canBeNull="false" remark="地区" />
-					<field name="Address" dataType="String" length="64"
-						canBeNull="false" remark="地址" />
-				</list>
-			</object>
-		</packet>
 	</packets>
 	<genericControllers>
 		<genericController name="PostcodeController"
 			path="/postcode/" clientName="PostcodeClient"
-			clientParent="com.fastjrun.sdkg.client.BaseGenericClient"
+			clientParent="com.alibaba.testsdk.client.BasePostcodeClient"
 			remark="邮编查询" tags="邮编查询">
 			<service name="postcodeService" class="PostcodeRest">
 				<method name="query" version="" path="query"
-					remark="根据相关条件查询符合条件地区的邮编" method="GET">
+					remark="通过邮编查询对应的地名" method="GET">
 					<parameters>
 						<parameter name="postcode" dataType="String" length="11"
 							canBeNull="false" remark="邮编，如：215001" />
-						<parameter name="key" dataType="String" length="64"
-							canBeNull="true" remark="应用APPKEY(应用详细页查询)" />
 						<parameter name="page" dataType="Integer" length="11"
 							canBeNull="false" remark="第几页,默认为第1页" />
 						<parameter name="pagesize" dataType="Integer"
@@ -97,18 +64,16 @@
 							canBeNull="true" remark="返回数据的格式,xml或json，默认json" />
 					</parameters>
 					<response
-						class="packet.api.QueryAddressByPostcodeResponseBody" />
+						class="packet.postcode.QueryAddressByPostcodeResponseBody" />
 				</method>
 				<method name="pcd" version="" path="pcd"
 					remark="返回省份、城市、地区（县）关联的列表">
 					<parameters>
-						<parameter name="key" dataType="String" length="64"
-							canBeNull="true" remark="应用APPKEY(应用详细页查询)" />
 						<parameter name="dtype" dataType="String" length="10"
 							canBeNull="true" remark="返回数据的格式,xml或json，默认json" />
 					</parameters>
 					<response
-						class="packet.api.QueryPcdResponseBody" />
+						class="packet.postcode.QueryPcdResponseBody" />
 				</method>
 				<method name="search" version="" path="search.php"
 					remark="根据相关条件查询符合条件地区的邮编">
@@ -125,13 +90,11 @@
 							canBeNull="false" remark="第几页,默认为第1页" />
 						<parameter name="pagesize" dataType="Integer"
 							length="11" canBeNull="false" remark="每页显示条数,(1-50)默认20条，" />
-						<parameter name="key" dataType="String" length="64"
-							canBeNull="true" remark="应用APPKEY(应用详细页查询)" />
 						<parameter name="dtype" dataType="String" length="10"
 							canBeNull="true" remark="返回数据的格式,xml或json，默认json" />
 					</parameters>
 					<response
-						class="packet.api.QueryPostcodeByAddressResponseBody" />
+						class="packet.postcode.QueryAddressByPostcodeResponseBody" />
 				</method>
 			</service>
 		</genericController>
