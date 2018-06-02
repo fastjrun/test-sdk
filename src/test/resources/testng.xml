@@ -7,15 +7,7 @@
 		<parameter name="envName" value="${envName}"></parameter>
 		<classes>
 			<class
-				name="com.alibaba.testsdk.client.AppVersionGenericClientTest" />
-			<class
-				name="com.alibaba.testsdk.client.UserGenericClientTest" />
-			<class name="com.alibaba.testsdk.client.UserAppClientTest" />
-			<class
-				name="com.alibaba.testsdk.client.AppVersionAppClientTest" />
-			<class
-				name="com.alibaba.testsdk.client.ArticleApiClientTest" />
-			<class name="com.alibaba.testsdk.client.UserApiClientTest" />
+				name="com.alibaba.testsdk.client.PostcodeClientTest" />
 		</classes>
 	</test>
 </suite>

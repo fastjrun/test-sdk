@@ -161,15 +161,7 @@
 			</activation>
 			<properties>
 				<!-- src/main/resources/test-sdk-sdk.properties -->
-				<test-sdk.accessKey>apiworldaccessKey</test-sdk.accessKey>
-				<test-sdk.accessKeySn>apiworldaccessKeySn</test-sdk.accessKeySn>
-				<test-sdk.apiUrlPre>http://www.apihelp.cn</test-sdk.apiUrlPre>
-				<test-sdk.appKey>app000001</test-sdk.appKey>
-				<test-sdk.appVersion>1.0.0</test-sdk.appVersion>
-				<test-sdk.appSource>ios</test-sdk.appSource>
-				<test-sdk.deviceId>yifanmobile</test-sdk.deviceId>
-				<test-sdk.appUrlPre>http://www.apihelp.cn</test-sdk.appUrlPre>
-				<test-sdk.genericUrlPre>http://www.apihelp.cn</test-sdk.genericUrlPre>
+				<test-sdk.genericUrlPre>http://v.juhe.cn</test-sdk.genericUrlPre>
 				<envName>local</envName>
 			</properties>
 		</profile>
