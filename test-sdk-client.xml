@@ -5,6 +5,8 @@
 			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
 			<field name="error_code" dataType="Integer" length="10"
 				canBeNull="false" remark="返回码" />
+			<field name="reason" dataType="String" length="100"
+				canBeNull="false" remark="返回说明" />
 			<object name="result"
 				class="packet.api.QueryAddressByPostcodeResponseBodyResult">
 				<list name="list"
@@ -26,6 +28,8 @@
 			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
 			<field name="error_code" dataType="Integer" length="10"
 				canBeNull="false" remark="返回码" />
+			<field name="reason" dataType="String" length="100"
+				canBeNull="false" remark="返回说明" />
 			<list name="result"
 				class="packet.api.QueryPcdResponseBodyResult">
 				<field name="id" dataType="String" length="10"
@@ -52,6 +56,8 @@
 			parent="com.fastjrun.sdkg.packet.BaseResponseBody">
 			<field name="error_code" dataType="Integer" length="10"
 				canBeNull="false" remark="返回码" />
+			<field name="reason" dataType="String" length="100"
+				canBeNull="false" remark="返回说明" />
 			<object name="result"
 				class="packet.api.QueryPostcodeByAddressResponseBodyResult">
 				<list name="list"
